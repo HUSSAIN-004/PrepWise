@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import api from "../lib/api";
-
+import { toast } from "react-toastify";
 
 export default function Auth() {
 
@@ -48,13 +48,13 @@ export default function Auth() {
 
             login(res.data.token, res.data.user);
 
-            alert("Login Successful");
+            toast.success("Login Successful");
 
             navigate(redirectTo, { replace: true });
         } catch (error) {
             console.log(error);
 
-            alert(
+            toast.error(
                 error.response?.data?.message ||
                 "Login Failed"
             );
@@ -71,13 +71,13 @@ export default function Auth() {
 
             login(res.data.token, res.data.user);
 
-            alert("Signup Successful");
+            toast.success("Signup Successful");
 
             navigate(redirectTo, { replace: true });
         } catch (error) {
             console.log(error);
 
-            alert(
+            toast.error(
                 error.response?.data?.message ||
                 "Signup Failed"
             );
